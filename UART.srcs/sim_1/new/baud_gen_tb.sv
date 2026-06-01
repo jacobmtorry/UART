@@ -28,9 +28,9 @@ module baud_gen_tb();
 
     initial begin
         $monitor("time=%0t clk=%0b baud_tick=%0b cnt=%0d",
-            $time, clk, baud_tick, dut.cnt);
+            $time, clk, baud_tick, dut.count);
 
-        #100000;
+        #1000000;
         $finish;
     end
 

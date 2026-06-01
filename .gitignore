@@ -1,0 +1,10 @@
+UART.cache/
+UART.hw/
+UART.ip_user_files/
+UART.runs/
+UART.sim/
+UART.srcs/utils_1
+*.jou
+*.log
+*.wdb
+*.wdf

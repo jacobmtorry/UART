@@ -1,25 +1,28 @@
 `timescale 1ns / 1ps
 
-// We are using a 100MHz Clock
-
-module baud_generator(
+module baud_generator #(
+        parameter BAUD = 9600
+    )(
         input   logic rst,
         input   logic clk,
         output  logic baud_tick
     );
     
-    logic [$clog2(868)-1:0] cnt;
+    localparam CLOCK = 100000000;
+    localparam BAUD_CYCLES = CLOCK / BAUD;
+    
+    logic [$clog2(BAUD_CYCLES)-1:0] count;
     
     always_ff @(posedge clk) begin
         if (rst) begin
-            cnt <= '0;
+            count <= '0;
             baud_tick <= '0;
         end else begin
-            if (cnt == 867) begin
-                cnt <= '0;
+            if (count == (BAUD_CYCLES-1)) begin
+                count <= '0;
                 baud_tick <= 1'b1;
             end else begin
-                cnt <= cnt + 1'b1;
+                count <= count + 1'b1;
                 baud_tick <= '0;
             end
         end 
