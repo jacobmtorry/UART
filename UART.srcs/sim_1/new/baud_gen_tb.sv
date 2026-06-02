@@ -6,7 +6,7 @@ module baud_gen_tb();
     logic rst;
     logic baud_tick;
 
-    baud_generator dut (
+    baud_generator #(.BAUD(115200)) dut (
         .rst(rst),
         .clk(clk),
         .baud_tick(baud_tick)
