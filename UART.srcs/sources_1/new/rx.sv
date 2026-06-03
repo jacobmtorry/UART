@@ -33,7 +33,7 @@ module rx #(
     always_ff  @(posedge clk) begin 
         if(rst) begin
             state <= IDLE;
-            index <= 1'b0;
+            index <= 3'b0;
             rx_reg <= '0;
             rx_busy <= 1'b0;
             rx_data <= 8'b0;
@@ -45,12 +45,12 @@ module rx #(
                 IDLE: begin
                     if(rx_serial == 0) begin
                         state <= START;
+                        internal_count <= '0;
                     end 
                 end 
                 
                 START: begin 
                     baud_count <= '0;
-                    internal_count <= '0;
                     if(internal_count == (SAMP_CYCLES-1)) begin 
                         if(rx_serial == 1'b0) begin
                             state <= DATA;
