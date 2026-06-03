@@ -13,7 +13,7 @@ module UART_top(
     
     logic baud_tick;
     
-    baud_generator #(.BAUD(115200)) baud_gen_tx (
+    baud_generator #(.BAUD(9600)) baud_gen_tx (
         .rst(rst),
         .clk(clk),
         .baud_tick(baud_tick)
