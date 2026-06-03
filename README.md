@@ -1,5 +1,5 @@
 Current Progress (Full README will be commited on project completion)
-- [x]Test baud Generator 
+- [x] Test baud Generator 
 - [x] Test UART Tx in simulation
 - [x] Test UART Rx in simulation
 - [ ] Test Tx->Rx Loopback in Simulation
