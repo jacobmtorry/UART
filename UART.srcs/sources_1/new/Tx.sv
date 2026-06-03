@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-module Tx(
+module tx(
         input logic rst,
         input logic clk,
         

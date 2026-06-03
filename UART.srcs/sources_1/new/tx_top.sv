@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-module UART_top(
+module tx_top(
         input logic rst,
         input logic clk,
         
@@ -19,7 +19,7 @@ module UART_top(
         .baud_tick(baud_tick)
     );
     
-    Tx tx (
+    tx tx (
         .rst(rst),
         .clk(clk),
         

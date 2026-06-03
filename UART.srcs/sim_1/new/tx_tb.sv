@@ -12,7 +12,7 @@ module tx_tb();
     logic [9:0] expected_frame;
     int bit_num;
 
-    UART_top dut (
+    tx_top dut (
         .rst(rst),
         .clk(clk),
 
