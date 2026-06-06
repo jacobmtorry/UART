@@ -194,10 +194,11 @@ Test flow:
 5. Green LED indicates a correct byte.
 6. Red LED indicates a mismatch.
 
-Evidence to add:
+In this linked video, I give a brief overview of the simple test. 
 
-- [ ] Add photo of FPGA LED pass/fail behavior.
-- [ ] Add short video showing reset, start button press, and green LED result.
+https://github.com/user-attachments/assets/9f2cf9f2-dc07-4362-9436-cfde25eea37d
+
+
 
 ## PC -> FPGA -> PC Echo
 
@@ -229,9 +230,11 @@ Flow control: none
 ```
 
 This first video demonstrates me opening a serial terminal in Vitis with a matching baud rate to my UART implementation: 115200.
+
 https://github.com/user-attachments/assets/33840908-715d-4f75-b9f7-c7500b18b5d6
 
 This second video shows what happens when we set our serial terminal to a mismatch baud rate.
+
 https://github.com/user-attachments/assets/635d0608-13e6-44b2-b708-9b2c0b2ec6d7
 
 
