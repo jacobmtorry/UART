@@ -231,9 +231,13 @@ Flow control: none
 
 Evidence to add:
 
-- [ ] Add screenshot of Vitis Serial Monitor settings.
-- [ ] Add screenshot or video showing a typed character echoed back.
-- [ ] Add note confirming local echo was disabled during the test.
+This first video demonstrates me opening a serial terminal in Vitis with a matching baud rate to my UART implementation: 115200.
+https://github.com/user-attachments/assets/33840908-715d-4f75-b9f7-c7500b18b5d6
+
+This second video shows what happens when we set our serial terminal to a mismatch baud rate.
+https://github.com/user-attachments/assets/635d0608-13e6-44b2-b708-9b2c0b2ec6d7
+
+
 
 ## Notes and Lessons Learned
 
@@ -244,10 +248,3 @@ Evidence to add:
 - Self-checking testbenches are more useful than waveform-only debugging.
 - Hardware buttons should eventually be synchronized and debounced before driving one-cycle control pulses.
 
-## Open Items
-
-- Confirm the final Urbana UART pin names and XDC mappings.
-- Add final FPGA loopback evidence.
-- Add final PC echo evidence.
-- Consider adding stop-bit/framing-error checking in RX.
-- Consider adding a FIFO between RX and TX for stronger echo behavior at high data rates.
