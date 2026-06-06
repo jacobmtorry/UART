@@ -179,8 +179,7 @@ The loopback testbench starts the transmitter, waits for the receiver to finish,
 
 Evidence to add:
 
-- [ ] Add loopback waveform screenshot showing `tx_serial`, `rx_serial`, `rx_done`, and `rx_data`.
-- [ ] Add simulator output showing multiple passing loopback bytes.
+<img width="2919" height="372" alt="image" src="https://github.com/user-attachments/assets/d08b92bf-9c6b-4c25-9f5a-2ed006548f7f" />
 
 ## FPGA Internal Loopback
 
@@ -228,8 +227,6 @@ Parity: none
 Stop bits: 1
 Flow control: none
 ```
-
-Evidence to add:
 
 This first video demonstrates me opening a serial terminal in Vitis with a matching baud rate to my UART implementation: 115200.
 https://github.com/user-attachments/assets/33840908-715d-4f75-b9f7-c7500b18b5d6
