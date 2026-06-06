@@ -61,11 +61,11 @@ The baud generator is verified by checking that:
 - `baud_tick` is exactly one clock cycle wide.
 - `baud_tick` does not occur early.
 
-Evidence to add:
+9600 Baud:
+<img width="2767" height="419" alt="image" src="https://github.com/user-attachments/assets/d7d9eb95-c200-40c8-b1b7-05bb58d1e6ba" />
 
-- [ ] Add waveform screenshot for 9600 baud.
-- [ ] Add waveform screenshot for 115200 baud.
-- [ ] Add simulator console output showing pass/fail behavior.
+115200 Baud:
+<img width="2767" height="419" alt="image" src="https://github.com/user-attachments/assets/429cb76d-4a2b-43a0-bf79-328a21fdc49e" />
 
 ## UART Transmitter
 
@@ -115,11 +115,12 @@ expected_frame[9] = stop bit
 
 The checker samples `tx_serial` on each `baud_tick` and raises a fatal error if any bit does not match.
 
-Evidence to add:
+9600 Baud:
+<img width="1927" height="410" alt="image" src="https://github.com/user-attachments/assets/a03a1c38-7c59-4053-908a-54321e420b1f" />
 
-- [ ] Add waveform screenshot for TX at 9600 baud.
-- [ ] Add waveform screenshot for TX at 115200 baud.
-- [ ] Add screenshot of self-checking testbench output.
+115200 Baud:
+<img width="2767" height="419" alt="image" src="https://github.com/user-attachments/assets/a9da02a2-4231-4196-9db7-7bcdc572dcc7" />
+
 
 ## UART Receiver
 
@@ -161,11 +162,12 @@ start bit 0 -> 8 data bits LSB-first -> stop bit 1
 
 The serial stimulus and checker run in parallel using `fork...join`. The checker waits for RX activity, then compares `rx_data` against the expected byte.
 
-Evidence to add:
+9600 Baud:
+<img width="1918" height="306" alt="image" src="https://github.com/user-attachments/assets/fff1a542-0782-4642-b6e6-64ef4c675b17" />
 
-- [ ] Add waveform screenshot for RX receiving `0x55`.
-- [ ] Add waveform screenshot showing `rx_done` and `rx_data`.
-- [ ] Add simulator output showing tested bytes such as `0x55`, `0x30`, and `0xFF`.
+115200 Baud:
+<img width="1671" height="299" alt="image" src="https://github.com/user-attachments/assets/315c6aea-0a57-4f1b-9ed2-b94c205d653d" />
+
 
 ## TX -> RX Loopback Simulation
 
@@ -176,8 +178,6 @@ tx_serial -> rx_serial
 ```
 
 The loopback testbench starts the transmitter, waits for the receiver to finish, and checks that the received byte matches the transmitted byte. This proves that the UART modules work together as a complete serial path.
-
-Evidence to add:
 
 <img width="2919" height="372" alt="image" src="https://github.com/user-attachments/assets/d08b92bf-9c6b-4c25-9f5a-2ed006548f7f" />
 
