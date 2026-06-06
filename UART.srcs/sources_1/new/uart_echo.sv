@@ -1,18 +1,16 @@
 `timescale 1ns / 1ps
 
-module uart_loopback_fpga( 
+module uart_echo( 
         input  logic clk,
         input  logic rst,
 
-        input  logic start,
-
-        output logic RGB0_red,
-        output logic RGB0_green
+        input  logic pc_rx,  // data from PC_tx to FPGA_rx
+        
+        output logic uart_tx // data from FPGA_tx to PC_rx
     );
     
     
     logic baud_tick;
-    logic serial_wire;
     
     logic rx_done;
     logic rx_busy;
@@ -22,27 +20,20 @@ module uart_loopback_fpga(
     logic tx_busy;
     logic [7:0] tx_data;
     
-    assign tx_start = start;
-    
     always_ff @(posedge clk) begin 
         if(rst) begin
-            RGB0_red <= 1'b0;
-            RGB0_green <= 1'b0;
-            tx_data <= 8'h55; // Hardcoded data to send
+            tx_start <= 1'b0;
+            tx_data <= 8'b0;
         end else begin 
-            if(rx_done) begin
-                if (rx_data == 8'h55) begin
-                    RGB0_red <= 1'b0;
-                    RGB0_green <= 1'b1;
-                end else begin 
-                    RGB0_red <= 1'b1;
-                    RGB0_green <= 1'b0;
-                end
+            tx_start <= 1'b0;
+            if(rx_done && !tx_busy) begin
+                tx_data <= rx_data;
+                tx_start <= 1'b1;
             end 
         end 
     end 
     
-    baud_generator #(.BAUD(2400)) baud_gen_tx (
+    baud_generator #(.BAUD(115200)) baud_gen_tx (
         .rst(rst),
         .clk(clk),
         .baud_tick(baud_tick)
@@ -57,14 +48,14 @@ module uart_loopback_fpga(
         .tx_data(tx_data),
         
         .tx_busy(tx_busy),
-        .tx_serial(serial_wire) 
+        .tx_serial(uart_tx) 
     );
     
-    rx #(.BAUD(2400)) rx (
+    rx #(.BAUD(115200)) rx (
         .rst(rst),
         .clk(clk),
         
-        .rx_serial(serial_wire),
+        .rx_serial(pc_rx),
         
         .rx_busy(rx_busy),
         .rx_done(rx_done),
