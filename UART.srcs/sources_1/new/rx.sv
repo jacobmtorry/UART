@@ -9,6 +9,7 @@ module rx #(
         input logic rx_serial,
         
         output logic rx_busy,
+        output logic rx_done,
         output logic [7:0] rx_data
     );
     
@@ -37,12 +38,14 @@ module rx #(
             rx_reg <= '0;
             rx_busy <= 1'b0;
             rx_data <= 8'b0;
+            rx_done <= 1'b0;
             baud_count <= '0;
             internal_count <= '0;
         end else begin 
             case(state)
             
                 IDLE: begin
+                    rx_done <= 1'b0;
                     if(rx_serial == 0) begin
                         state <= START;
                         internal_count <= '0;
@@ -83,6 +86,7 @@ module rx #(
                         baud_count <= '0;
                         rx_busy <= 1'b0;
                         rx_data <= rx_reg;
+                        rx_done <= 1'b1;
                         state <= IDLE;
                     end else begin
                         baud_count <= baud_count + 1'b1;
